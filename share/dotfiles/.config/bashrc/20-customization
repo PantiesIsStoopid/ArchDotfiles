@@ -1,14 +1,35 @@
 # -----------------------------------------------------
 # CUSTOMIZATION
 # -----------------------------------------------------
-POSH=agnoster
 
 # -----------------------------------------------------
 # Prompt
 # -----------------------------------------------------
-eval "$(oh-my-posh init bash --config $HOME/.config/ohmyposh/zen.toml)"
 
 # -----------------------------------------------------
 # Pywal
 # -----------------------------------------------------
 cat ~/.cache/wal/sequences
+
+# Customization
+
+# Initialize zoxide
+eval "$(zoxide init bash)"
+
+# Initialize Oh My Posh config
+if [[ $0 != *"oh-my-posh"* ]]; then
+  eval "$(oh-my-posh init bash --config https://raw.githubusercontent.com/PantiesIsStoopid/PowerShell/refs/heads/main/DraculaGit.omp.json)"
+fi
+
+# Import Modules and External Profiles
+if ! command -v terminal-icons &> /dev/null; then
+  yay -S terminal-icons
+fi
+
+if ! command -v psreadline &> /dev/null; then
+  yay -S psreadline
+fi
+
+# Use left and right arrow keys to autocomplete commands
+bind '"\e[C": forward-char'
+bind '"\e[D": backward-char'

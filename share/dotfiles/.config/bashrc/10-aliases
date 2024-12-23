@@ -1,71 +1,127 @@
-# -----------------------------------------------------
-# ALIASES
-# -----------------------------------------------------
+# Aliases
+alias Vim='nvim'
+alias Docs='cd ~/Documents'
+alias Dtop='cd ~/Desktop'
+alias Dloads='cd ~/Downloads'
+alias La='ls -la'
+alias Ll='ls -la'
+alias SysInfo='uname -a'
+alias FlushDNS='sudo systemd-resolve --flush-caches && echo "DNS has been flushed"'
+alias DelCmdHistory='history -c && rm ~/.bash_history && echo "Command history has been cleared"'
+alias GetPubIP='curl ifconfig.me'
+alias GetPrivIP='hostname -I'
+alias Speedtest='speedtest-cli'
+alias Fe='xdg-open .'
+alias Home='cd ~'
+alias Root='cd /'
+alias Update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y'
+alias LinUtil='curl -fsSL https://christitus.com/linux | sh'
+alias ReloadProfile='source ~/.bash_profile'
+alias SystemScan='sudo apt-get install -y debsums && sudo debsums -s'
+alias ClearRAM='sync; echo 3 > /proc/sys/vm/drop_caches'
+alias ReinstallWinget='sudo apt-get remove --purge winget && sudo apt-get install -y winget'
+alias EmptyBin='rm -rf ~/.local/share/Trash/*'
+alias CalcPi='echo "scale=100; 4*a(1)" | bc -l'
+alias Shutdown='sudo shutdown now'
+alias RPassword='openssl rand -base64 $1'
+alias RandomFact='curl -s https://uselessfacts.jsph.pl/random.json?language=en | jq -r .text'
+alias ClearCache='sudo apt-get clean && sudo apt-get autoclean && sudo apt-get autoremove -y'
+alias Gl='git log'
+alias Gs='git status'
+alias Ga='git add .'
+alias Gc='git commit -m "$1"'
+alias Gp='git push'
+alias G='zoxide z github'
+alias Gcl='git clone "$1"'
+alias Gcom='git add . && git commit -m "$1"'
+alias LazyG='git add . && git commit -m "$1" && git push'
+alias LazyInit='git init && git add . && git commit -m "first commit" && git branch -M master && git remote add origin "$1" && git push -u origin master'
 
-# -----------------------------------------------------
-# General
-# -----------------------------------------------------
-alias c='clear'
-alias nf='fastfetch'
-alias pf='fastfetch'
-alias ff='fastfetch'
-alias ls='eza -a --icons=always'
-alias ll='eza -al --icons=always'
-alias lt='eza -a --tree --level=1 --icons=always'
-alias shutdown='systemctl poweroff'
-alias v='$EDITOR'
-alias vim='$EDITOR'
-alias ts='~/.config/ml4w/scripts/snapshot.sh'
-alias wifi='nmtui'
-alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
+# CheatSheet
+CheatSheet() {
+  cat << EOF
+PowerShell Cheatsheet
+=====================
 
-# -----------------------------------------------------
-# ML4W Apps
-# -----------------------------------------------------
-alias ml4w='com.ml4w.welcome'
-alias ml4w-settings='com.ml4w.dotfilessettings'
-alias ml4w-hyprland='com.ml4w.hyprland.settings'
-alias ml4w-options='ml4w-hyprland-setup -m options'
-alias ml4w-sidebar='ags toggle sidebar'
-alias ml4w-diagnosis='~/.config/hypr/scripts/diagnosis.sh'
-alias ml4w-hyprland-diagnosis='~/.config/hypr/scripts/diagnosis.sh'
-alias ml4w-qtile-diagnosis='~/.config/ml4w/qtile/scripts/diagnosis.sh'
-alias ml4w-update='~/.config/ml4w/update.sh'
+Basic Commands:
+- Get-Command: Lists all cmdlets, functions, workflows, aliases installed.
+- Get-Process: Retrieves a list of running processes.
+- Start-Process: Starts a process.
+- Stop-Process: Stops a process.
+- Get-Service: Lists all services.
+- Start-Service: Starts a service.
+- Stop-Service: Stops a service.
+- Restart-Service: Restarts a service.
 
-# -----------------------------------------------------
-# Window Managers
-# -----------------------------------------------------
+File and Directory Management:
+- Get-ChildItem: Lists items in a directory (alias: ls, dir).
+- Set-Location: Changes the current directory (alias: cd).
+- Copy-Item: Copies an item from one location to another.
+- Move-Item: Moves an item from one location to another.
+- Remove-Item: Deletes an item.
+- New-Item: Creates a new item (file, directory, etc.).
+- Get-Content: Reads content of a file.
+- Set-Content: Writes or replaces content in a file.
+- Add-Content: Appends content to a file.
 
-alias Qtile='startx'
-# Hyprland with Hyprland
+System Information:
+- Get-Location: Displays the current directory.
+EOF
+}
 
-# -----------------------------------------------------
-# Git
-# -----------------------------------------------------
-alias gs="git status"
-alias ga="git add"
-alias gc="git commit -m"
-alias gp="git push"
-alias gpl="git pull"
-alias gst="git stash"
-alias gsp="git stash; git pull"
-alias gfo="git fetch origin"
-alias gcheck="git checkout"
-alias gcredential="git config credential.helper store"
+# Help Function
+ShowHelp() {
+  cat << EOF
+PowerShell Profile Help
+=======================
 
-# -----------------------------------------------------
-# Scripts
-# -----------------------------------------------------
-alias ascii='~/.config/ml4w/scripts/figlet.sh'
+Directory Navigation:
+- Docs: Changes the current directory to the user's Documents folder.
+- Dtop: Changes the current directory to the user's Desktop folder.
+- Dloads: Changes the current directory to the user's Downloads folder.
+- Home: Changes directories to the user's home.
+- Root: Changes directories to the C: drive.
 
-# -----------------------------------------------------
-# System
-# -----------------------------------------------------
-alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+File and System Information:
+- La: Lists all files in the current directory with detailed formatting.
+- Ll: Lists all files, including hidden, in the current directory with detailed formatting.
+- SysInfo: Displays detailed system information.
+- GetPrivIP: Retrieves the private IP address of the machine.
+- GetPubIP: Retrieves the public IP address of the machine.
+- Speedtest: Runs a speedtest for your internet.
 
-# -----------------------------------------------------
-# Qtile
-# -----------------------------------------------------
-alias res1='xrandr --output DisplayPort-0 --mode 2560x1440 --rate 120'
-alias res2='xrandr --output DisplayPort-0 --mode 1920x1080 --rate 120'
-alias setkb='setxkbmap de;echo "Keyboard set back to de."'
+System Maintenance:
+- FlushDNS: Clears the DNS cache.
+- DelCmdHistory: Deletes the command history.
+- SystemScan: Runs a DISM and SFC scan.
+- Update: Updates all known apps.
+- EmptyBin: Empties the Recycling bin.
+- ClearCache: Clears Windows caches.
+
+Utility Functions:
+- Fe: Opens File Explorer in your current directory.
+- LinUtil: Runs the Chris Titus Tech Linux utility.
+- ReloadProfile: Reloads the terminal profile.
+- ClearRAM: Cleans up the standby memory in RAM.
+- ReinstallWinget: Uninstalls Winget and reinstalls it.
+- CalcPi: Calculates pi to 100 digits.
+- Shutdown: Shutdown PC (-Force to force shutdown).
+- RPassword <Length>: Makes a random password.
+- RandomFact: Prints a random fun fact.
+
+Git Function:
+- Gl: Shortcut for 'git log'.
+- Gs: Shortcut for 'git status'.
+- Ga: Shortcut for 'git add .'.
+- Gc <message>: Shortcut for 'git commit -m'.
+- Gp: Shortcut for 'git push'.
+- G: Changes to the GitHub directory.
+- Gcom <message>: Adds all changes and commits with the specified message.
+- LazyG <message>: Adds all changes, commits with the specified message, and pushes to the remote repository.
+- LazyInit <URL>: Adds all steps for the init of a repo and can add remote url.
+
+- CheatSheet: Displays a list of all the most common commands.
+
+Use 'ShowHelp' to display this help message.
+EOF
+}

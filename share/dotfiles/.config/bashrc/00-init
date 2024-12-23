@@ -7,3 +7,12 @@
 # -----------------------------------------------------
 export EDITOR=nvim
 export PATH="/usr/lib/ccache/bin/:$PATH"
+
+# -----------------------------------------------------
+
+# Initial GitHub.com connectivity check with 1 second timeout
+if ping -c 1 -W 1 github.com &> /dev/null; then
+  CanConnectToGitHub=true
+else
+  CanConnectToGitHub=false
+fi
